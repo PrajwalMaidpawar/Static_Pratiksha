@@ -1,0 +1,524 @@
+/* ==========================================================================
+   CINEMATIC TRANSITIONS SYSTEM — PHASE 3
+   Editorial Creative Portfolio Presentation
+   ========================================================================== */
+
+:root {
+  --slide-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  --slide-duration: 850ms;
+  --slide-duration-contact: 900ms;
+}
+
+/* --------------------------------------------------------------------------
+   Presentation Container & Slide Stacking
+   -------------------------------------------------------------------------- */
+.presentation {
+  width: 100vw;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  background-color: #1f1d1d;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  touch-action: none;
+  contain: strict;
+}
+
+.presentation-stage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100vw;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f1d1d;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  outline: none;
+  contain: layout style paint;
+}
+
+/* Resting State: Active Slide */
+.slide--active {
+  display: flex;
+  z-index: 1;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  pointer-events: auto;
+}
+
+/* Inactive Slides (Hidden from layout/rendering) */
+.slide--inactive {
+  display: none !important;
+  pointer-events: none;
+}
+
+/* Transitioning States */
+.slide--entering {
+  display: flex;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation-timing-function: var(--slide-ease);
+  animation-duration: var(--slide-duration);
+  animation-fill-mode: forwards;
+}
+
+.slide--exiting {
+  display: flex;
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation-timing-function: var(--slide-ease);
+  animation-duration: var(--slide-duration);
+  animation-fill-mode: forwards;
+}
+
+/* Extended timing for Contact slide transition */
+.slide--t56.slide--entering,
+.slide--t56.slide--exiting {
+  animation-duration: var(--slide-duration-contact);
+}
+
+/* ==========================================================================
+   TRANSITION 01 & BASE: HERO <-> INTRODUCTION (Clean Vertical Editorial)
+   ========================================================================== */
+
+/* Next: Exit upward, Enter from bottom */
+.slide--enter-next.slide--t01,
+.slide--enter-next.slide--base {
+  animation-name: slideEnterNext_Base;
+}
+.slide--exit-next.slide--t01,
+.slide--exit-next.slide--base {
+  animation-name: slideExitNext_Base;
+}
+
+/* Prev: Exit downward, Enter from top */
+.slide--enter-prev.slide--t01,
+.slide--enter-prev.slide--base {
+  animation-name: slideEnterPrev_Base;
+}
+.slide--exit-prev.slide--t01,
+.slide--exit-prev.slide--base {
+  animation-name: slideExitPrev_Base;
+}
+
+@keyframes slideExitNext_Base {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes slideEnterNext_Base {
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideExitPrev_Base {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes slideEnterPrev_Base {
+  0% {
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ==========================================================================
+   TRANSITION 02: INTRODUCTION <-> MY CONTENT (Subtle Diagonal Editorial)
+   ========================================================================== */
+
+.slide--enter-next.slide--t12 {
+  animation-name: slideEnterNext_t12;
+}
+.slide--exit-next.slide--t12 {
+  animation-name: slideExitNext_t12;
+}
+.slide--enter-prev.slide--t12 {
+  animation-name: slideEnterPrev_t12;
+}
+.slide--exit-prev.slide--t12 {
+  animation-name: slideExitPrev_t12;
+}
+
+@keyframes slideExitNext_t12 {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-3%, -8%, 0);
+  }
+}
+
+@keyframes slideEnterNext_t12 {
+  0% {
+    transform: translate3d(4%, 100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideExitPrev_t12 {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(3%, 8%, 0);
+  }
+}
+
+@keyframes slideEnterPrev_t12 {
+  0% {
+    transform: translate3d(-4%, -100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ==========================================================================
+   TRANSITION 03: MY CONTENT <-> REELS (Scale & Energetic Vertical Rise)
+   ========================================================================== */
+
+.slide--enter-next.slide--t23 {
+  animation-name: slideEnterNext_t23;
+}
+.slide--exit-next.slide--t23 {
+  animation-name: slideExitNext_t23;
+}
+.slide--enter-prev.slide--t23 {
+  animation-name: slideEnterPrev_t23;
+}
+.slide--exit-prev.slide--t23 {
+  animation-name: slideExitPrev_t23;
+}
+
+@keyframes slideExitNext_t23 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(0, -8%, 0) scale(0.96);
+  }
+}
+
+@keyframes slideEnterNext_t23 {
+  0% {
+    transform: translate3d(0, 100%, 0) scale(1.03);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes slideExitPrev_t23 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(0, 8%, 0) scale(0.96);
+  }
+}
+
+@keyframes slideEnterPrev_t23 {
+  0% {
+    transform: translate3d(0, -100%, 0) scale(1.03);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   TRANSITION 04: REELS <-> BRAND WORKS (Controlled Vertical with Subtle Fade)
+   ========================================================================== */
+
+.slide--enter-next.slide--t34 {
+  animation-name: slideEnterNext_t34;
+}
+.slide--exit-next.slide--t34 {
+  animation-name: slideExitNext_t34;
+}
+.slide--enter-prev.slide--t34 {
+  animation-name: slideEnterPrev_t34;
+}
+.slide--exit-prev.slide--t34 {
+  animation-name: slideExitPrev_t34;
+}
+
+@keyframes slideExitNext_t34 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -7%, 0);
+    opacity: 0.92;
+  }
+}
+
+@keyframes slideEnterNext_t34 {
+  0% {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideExitPrev_t34 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 7%, 0);
+    opacity: 0.92;
+  }
+}
+
+@keyframes slideEnterPrev_t34 {
+  0% {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   TRANSITION 05: BRAND WORKS <-> COLLABORATION FORMATS (Horizontal Reveal)
+   ========================================================================== */
+
+.slide--enter-next.slide--t45 {
+  animation-name: slideEnterNext_t45;
+}
+.slide--exit-next.slide--t45 {
+  animation-name: slideExitNext_t45;
+}
+.slide--enter-prev.slide--t45 {
+  animation-name: slideEnterPrev_t45;
+}
+.slide--exit-prev.slide--t45 {
+  animation-name: slideExitPrev_t45;
+}
+
+@keyframes slideExitNext_t45 {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-6%, -5%, 0);
+  }
+}
+
+@keyframes slideEnterNext_t45 {
+  0% {
+    transform: translate3d(6%, 100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideExitPrev_t45 {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(6%, 5%, 0);
+  }
+}
+
+@keyframes slideEnterPrev_t45 {
+  0% {
+    transform: translate3d(-6%, -100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ==========================================================================
+   TRANSITION 06: COLLABORATION FORMATS <-> CONTACT (Calm Editorial Conclusion)
+   ========================================================================== */
+
+.slide--enter-next.slide--t56 {
+  animation-name: slideEnterNext_t56;
+}
+.slide--exit-next.slide--t56 {
+  animation-name: slideExitNext_t56;
+}
+.slide--enter-prev.slide--t56 {
+  animation-name: slideEnterPrev_t56;
+}
+.slide--exit-prev.slide--t56 {
+  animation-name: slideExitPrev_t56;
+}
+
+@keyframes slideExitNext_t56 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -5%, 0);
+    opacity: 0.90;
+  }
+}
+
+@keyframes slideEnterNext_t56 {
+  0% {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideExitPrev_t56 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, 5%, 0);
+    opacity: 0.90;
+  }
+}
+
+@keyframes slideEnterPrev_t56 {
+  0% {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS (< 768px): Restrained Horizontal Movement
+   ========================================================================== */
+@media (max-width: 768px) {
+  @keyframes slideExitNext_t12 {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-1%, -8%, 0); }
+  }
+
+  @keyframes slideEnterNext_t12 {
+    0% { transform: translate3d(1.5%, 100%, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  @keyframes slideExitPrev_t12 {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(1%, 8%, 0); }
+  }
+
+  @keyframes slideEnterPrev_t12 {
+    0% { transform: translate3d(-1.5%, -100%, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  @keyframes slideExitNext_t45 {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-2%, -5%, 0); }
+  }
+
+  @keyframes slideEnterNext_t45 {
+    0% { transform: translate3d(2%, 100%, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  @keyframes slideExitPrev_t45 {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(2%, 5%, 0); }
+  }
+
+  @keyframes slideEnterPrev_t45 {
+    0% { transform: translate3d(-2%, -100%, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION: Simplified Subtle Fade & Short Vertical
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .slide--entering,
+  .slide--exiting {
+    animation-duration: 150ms !important;
+    animation-timing-function: ease-out !important;
+  }
+
+  .slide--enter-next,
+  .slide--enter-prev {
+    animation-name: slideEnterReduced !important;
+  }
+
+  .slide--exit-next,
+  .slide--exit-prev {
+    animation-name: slideExitReduced !important;
+  }
+
+  @keyframes slideEnterReduced {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 2%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes slideExitReduced {
+    0% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(0, -2%, 0);
+    }
+  }
+}
