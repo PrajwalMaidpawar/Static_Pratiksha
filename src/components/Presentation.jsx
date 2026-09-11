@@ -201,6 +201,11 @@ export default function Presentation() {
       return;
     }
 
+    // Allow focused anchor elements to be activated with Enter or Space
+    if (e.target?.tagName === 'A' && (e.key === 'Enter' || e.key === ' ')) {
+      return;
+    }
+
     switch (e.key) {
       case 'ArrowDown':
       case 'ArrowRight':

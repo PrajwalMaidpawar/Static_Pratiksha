@@ -10,6 +10,7 @@ export default function CustomCursor() {
   const cursorRef = useRef(null);
   const [isEnabled, setIsEnabled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [cursorLabel, setCursorLabel] = useState('');
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -41,6 +42,8 @@ export default function CustomCursor() {
     const onMouseLeave = () => {
       isMouseInside = false;
       setIsVisible(false);
+      setIsHovered(false);
+      setCursorLabel('');
     };
 
     const onMouseEnter = () => {
@@ -50,16 +53,21 @@ export default function CustomCursor() {
 
     const onMouseOver = (e) => {
       const target = e.target;
-      if (
-        target &&
-        (target.closest('[data-cursor="interactive"]') ||
-          target.closest('button') ||
-          target.closest('a') ||
-          target.closest('[role="button"]'))
-      ) {
+      if (!target) return;
+
+      const interactiveEl =
+        target.closest('[data-cursor="interactive"]') ||
+        target.closest('button') ||
+        target.closest('a') ||
+        target.closest('[role="button"]');
+
+      if (interactiveEl) {
         setIsHovered(true);
+        const labeledEl = target.closest('[data-cursor-label]');
+        setCursorLabel(labeledEl ? labeledEl.getAttribute('data-cursor-label') || '' : '');
       } else {
         setIsHovered(false);
+        setCursorLabel('');
       }
     };
 
@@ -102,9 +110,13 @@ export default function CustomCursor() {
       id="custom-cursor"
       className={`custom-cursor ${isVisible ? 'custom-cursor--visible' : ''} ${
         isHovered ? 'custom-cursor--hover' : ''
-      }`}
+      } ${cursorLabel ? 'custom-cursor--has-label' : ''}`}
       aria-hidden="true"
-    />
+    >
+      {cursorLabel && (
+        <span className="custom-cursor-label">{cursorLabel}</span>
+      )}
+    </div>
   );
 }
 
