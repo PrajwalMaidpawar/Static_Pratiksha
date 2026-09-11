@@ -18,10 +18,11 @@ export default function NavigationHint({ isVisible, onInteract }) {
       role="button"
       tabIndex={isVisible ? 0 : -1}
       aria-hidden={!isVisible}
-      aria-label="Scroll to explore presentation"
+      aria-label="Navigate presentation"
       data-cursor="interactive"
     >
-      <span className="navigation-hint-text">SCROLL TO EXPLORE</span>
+      <span className="navigation-hint-text navigation-hint-text--desktop">SCROLL TO EXPLORE</span>
+      <span className="navigation-hint-text navigation-hint-text--mobile">SWIPE TO EXPLORE</span>
       <span className="navigation-hint-arrow" aria-hidden="true">↓</span>
     </div>
   );

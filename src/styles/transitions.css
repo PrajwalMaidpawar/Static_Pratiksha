@@ -438,44 +438,47 @@
 /* ==========================================================================
    MOBILE RESPONSIVENESS (< 768px): Restrained Horizontal Movement
    ========================================================================== */
+/* ==========================================================================
+   MOBILE & TOUCH TUNING (Phase 9): Pure Vertical Motion on Narrow Screens
+   ========================================================================== */
 @media (max-width: 768px) {
   @keyframes slideExitNext_t12 {
     0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-1%, -8%, 0); }
+    100% { transform: translate3d(0, -8%, 0); }
   }
 
   @keyframes slideEnterNext_t12 {
-    0% { transform: translate3d(1.5%, 100%, 0); }
+    0% { transform: translate3d(0, 100%, 0); }
     100% { transform: translate3d(0, 0, 0); }
   }
 
   @keyframes slideExitPrev_t12 {
     0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(1%, 8%, 0); }
+    100% { transform: translate3d(0, 8%, 0); }
   }
 
   @keyframes slideEnterPrev_t12 {
-    0% { transform: translate3d(-1.5%, -100%, 0); }
+    0% { transform: translate3d(0, -100%, 0); }
     100% { transform: translate3d(0, 0, 0); }
   }
 
   @keyframes slideExitNext_t45 {
     0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-2%, -5%, 0); }
+    100% { transform: translate3d(0, -6%, 0); }
   }
 
   @keyframes slideEnterNext_t45 {
-    0% { transform: translate3d(2%, 100%, 0); }
+    0% { transform: translate3d(0, 100%, 0); }
     100% { transform: translate3d(0, 0, 0); }
   }
 
   @keyframes slideExitPrev_t45 {
     0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(2%, 5%, 0); }
+    100% { transform: translate3d(0, 6%, 0); }
   }
 
   @keyframes slideEnterPrev_t45 {
-    0% { transform: translate3d(-2%, -100%, 0); }
+    0% { transform: translate3d(0, -100%, 0); }
     100% { transform: translate3d(0, 0, 0); }
   }
 }
